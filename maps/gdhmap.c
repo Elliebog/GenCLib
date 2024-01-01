@@ -52,11 +52,13 @@ gdhmap* gdhmap_create(size_t max_size) {
     return map;
 }
 
-void gdhmap_free(gdhmap* map) {
-    //free the memory blocks holding values and keys 
-    for(int i = 0; i < map->max_size; i++) {
-        free(map->keys[i]);
-        free(map->values[i]);
+void gdhmap_free(gdhmap* map, bool rem_Content) {
+    if(rem_Content) {
+        //free the memory blocks holding values and keys 
+        for(int i = 0; i < map->max_size; i++) {
+            free(map->keys[i]);
+            free(map->values[i]);
+        }
     }
 
     //free the rest of the pointers and map itself
@@ -95,6 +97,7 @@ void* gdhmap_get(gdhmap* gdhmap, char* key) {
 
     return NULL;
 }
+
 
 int gdhmap_put(gdhmap* gdhmap, char* key, void* value, size_t valuesize) {
     //build hash and offsets for probing
@@ -151,4 +154,20 @@ int gdhmap_remove(gdhmap* gdhmap, char* key) {
     }
 
    return 0;
+}
+
+gdhmap* gdhmap_resize(gdhmap* map, size_t new_size, size_t typesize) {
+    char** keys = map->keys;
+    void** values = map->values;
+    size_t oldsize = map->max_size;
+
+    //Create map with new size
+    gdhmap* new_map = gdhmap_create(new_size);
+    for(size_t i = 0; i < oldsize; i++) {
+        if(keys[i] != NULL && keys[i] != DEL_MARKER)
+            gdhmap_put(new_map, keys[i], values[i], typesize);
+    }
+
+    gdhmap_free(map,false);
+    return new_map;
 }
