@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
+#include "argparse.h"
 
 /// @brief Splits a string into it's arguments according to POSIX style Command Line arguments specifications 
 /// @param str the command line string
@@ -13,9 +14,9 @@ char** argparse(char* str, int* argc) {
     size_t argv_i = 0;
     size_t argstr_i = 0;
     size_t argstrlen = 0;
-    uint arg_empty = 1;
-    uint in_quotes = 0;
-    uint escaped = 0;
+    int arg_empty = 1;
+    int in_quotes = 0;
+    int escaped = 0;
     //in_quotes = 1 -> "" quote
     //in_quotes = 2 -> '' quote
     while(str[i] != 0) {
