@@ -5,7 +5,7 @@
 #include <string.h>
 #include "parser.h"
 #include <stdbool.h>
-#include "strlib.h"
+#include "../string/strlib.h"
 
 #define LINE_LENGTH (MAX_KEY_LENGTH + MAX_VAL_LENGTH + 8) 
 #define INIT_LINES 512
