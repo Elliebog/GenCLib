@@ -1,0 +1,72 @@
+.TH "/home/ellie/Nextcloud/Coding/GenCLib/io/parser.c" 3 "GenCLib" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/ellie/Nextcloud/Coding/GenCLib/io/parser.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <ctype\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include <err\&.h>\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include 'parser\&.h'\fP
+.br
+\fC#include <stdbool\&.h>\fP
+.br
+\fC#include '\&.\&./string/strlib\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBLINE_LENGTH\fP   (\fBMAX_KEY_LENGTH\fP + \fBMAX_VAL_LENGTH\fP + 8)"
+.br
+.ti -1c
+.RI "#define \fBINIT_LINES\fP   512"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBconf_opt\fP * \fBread_conf\fP (char *filepath, size_t *n)"
+.br
+.RI "Read a \&.conf Configuration file at filePath\&. conf_arr returns the array pointer\&. n is the size of the array Comments are only treated as comments if # is first non-space character in line\&. "
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define INIT_LINES   512"
+
+.SS "#define LINE_LENGTH   (\fBMAX_KEY_LENGTH\fP + \fBMAX_VAL_LENGTH\fP + 8)"
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBconf_opt\fP * read_conf (char * filepath, size_t * n)"
+
+.PP
+Read a \&.conf Configuration file at filePath\&. conf_arr returns the array pointer\&. n is the size of the array Comments are only treated as comments if # is first non-space character in line\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilepath\fP the Path to the configuration file 
+.br
+\fIn\fP Pointer to the counter of the array (should be 0 at calling) 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+Returns the array pointer 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for GenCLib from the source code\&.

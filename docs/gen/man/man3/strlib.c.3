@@ -1,0 +1,226 @@
+.TH "/home/ellie/Nextcloud/Coding/GenCLib/string/strlib.c" 3 "GenCLib" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/ellie/Nextcloud/Coding/GenCLib/string/strlib.c
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stddef\&.h>\fP
+.br
+\fC#include <string\&.h>\fP
+.br
+\fC#include <stdbool\&.h>\fP
+.br
+\fC#include <errno\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+\fC#include 'strlib\&.h'\fP
+.br
+\fC#include <stdlib\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBmax\fP(a,  b)"
+.br
+.ti -1c
+.RI "#define \fBmin\fP(a,  b)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBis_prefix\fP (char *prefix, size_t prefix_len, char *str)"
+.br
+.RI "Checks whether \fCprefix\fP is a prefix of \fCstr\fP (none of the strings have to be null terminated) "
+.ti -1c
+.RI "int \fBis_suffix\fP (char *suffix, size_t suffix_len, char *str, size_t str_len)"
+.br
+.RI "Checks whether \fCsuffix\fP is a suffix of \fCstr\fP (none of the strings have to be null terminated) "
+.ti -1c
+.RI "int \fBcontains\fP (char *arr, size_t len, char key)"
+.br
+.RI "Checks if a string contains a character\&. "
+.ti -1c
+.RI "void \fBremove_newline\fP (char *str)"
+.br
+.RI "Remove the newline at the end of the string\&. "
+.ti -1c
+.RI "int \fBremove_whitespaces\fP (char *str, char *buf)"
+.br
+.RI "Removes leading and trailing whitespaces\&. "
+.ti -1c
+.RI "int \fBsplit_at_char\fP (char *str, char *str1, char *str2, char c)"
+.br
+.RI "Split the string into 2 strings on the first occurence of a specific character\&. "
+.ti -1c
+.RI "int \fBsearch_replace\fP (char *str, char *key, char *replace, char *buffer)"
+.br
+.RI "Search and replace the first occurence of a key within a string\&. "
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define max(a, b)"
+\fBValue:\fP.PP
+.nf
+({                           \\
+    __typeof__ (a) _a = (a); \\
+    __typeof__ (b) _b = (b); \\
+    _a > _b ? _a : _b;       \\
+})
+.fi
+
+.SS "#define min(a, b)"
+\fBValue:\fP.PP
+.nf
+({                           \\
+    __typeof__ (a) _a = (a); \\
+    __typeof__ (b) _b = (b); \\
+    _a < _b ? _a : _b;       \\
+})
+.fi
+
+.SH "Function Documentation"
+.PP 
+.SS "int contains (char * arr, size_t len, char key)"
+
+.PP
+Checks if a string contains a character\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarr\fP the string to check 
+.br
+\fIlen\fP the length of the string 
+.br
+\fIkey\fP the character to look for 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if the key is in the string else 0 
+.RE
+.PP
+
+.SS "int is_prefix (char * prefix, size_t prefix_len, char * str)"
+
+.PP
+Checks whether \fCprefix\fP is a prefix of \fCstr\fP (none of the strings have to be null terminated) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIprefix\fP the prefix to be checked 
+.br
+\fIprefix_len\fP the length of the prefix 
+.br
+\fIstr\fP the string to be checked 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if the prefix is a prefix -> else 0 
+.RE
+.PP
+
+.SS "int is_suffix (char * suffix, size_t suffix_len, char * str, size_t str_len)"
+
+.PP
+Checks whether \fCsuffix\fP is a suffix of \fCstr\fP (none of the strings have to be null terminated) 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsuffix\fP the suffix to be checked 
+.br
+\fIsuffix_len\fP the length of the suffix 
+.br
+\fIstr\fP the string to be checked 
+.br
+\fIstr_len\fP the length of the string to be checked 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if the suffix is a suffix -> else 0 
+.RE
+.PP
+
+.SS "void remove_newline (char * str)"
+
+.PP
+Remove the newline at the end of the string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP 
+.br
+ 
+.RE
+.PP
+
+.SS "int remove_whitespaces (char * str, char * buf)"
+
+.PP
+Removes leading and trailing whitespaces\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP the input string 
+.br
+\fIbuf\fP buffer in which new string will be put\&. PLease instantiate with calloc(1, strlen(str)), or ensure that it is init to zero 
+.RE
+.PP
+
+.SS "int search_replace (char * str, char * key, char * replace, char * buffer)"
+
+.PP
+Search and replace the first occurence of a key within a string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP the string which contains the key (Null terminated) 
+.br
+\fIkey\fP the key 
+.br
+\fIreplace\fP replace sequence 
+.br
+\fIbuffer\fP Where the output will be written 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if the replacing was successful\&. 0 if not\&. 
+.br
+ 
+.RE
+.PP
+
+.SS "int split_at_char (char * str, char * str1, char * str2, char c)"
+
+.PP
+Split the string into 2 strings on the first occurence of a specific character\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP the original string 
+.br
+\fIstr1\fP buffer for the first part of the string 
+.br
+\fIstr2\fP buffer for the second part of the string 
+.br
+\fIc\fP the character at which to split 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+-1 if the character wasn't found\&. else 0 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for GenCLib from the source code\&.

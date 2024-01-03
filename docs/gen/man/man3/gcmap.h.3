@@ -1,0 +1,208 @@
+.TH "/home/ellie/Nextcloud/Coding/GenCLib/maps/gcmap.h" 3 "GenCLib" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+/home/ellie/Nextcloud/Coding/GenCLib/maps/gcmap.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBgcmap_node_t\fP"
+.br
+.ti -1c
+.RI "struct \fBgcmap_t\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAX_KEY_LENGTH\fP   128"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef struct \fBgcmap_node_t\fP \fBgcmap_node\fP"
+.br
+.ti -1c
+.RI "typedef struct \fBgcmap_t\fP \fBgcmap\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBgcmap\fP * \fBgcmap_create\fP (size_t max_size)"
+.br
+.RI "Create the chaining map\&. "
+.ti -1c
+.RI "void \fBgcmap_free\fP (\fBgcmap\fP *\fBgcmap\fP)"
+.br
+.RI "Free the map\&. "
+.ti -1c
+.RI "int \fBgcmap_hash\fP (size_t maxsize, char *key)"
+.br
+.RI "The hash function for the map\&. "
+.ti -1c
+.RI "void * \fBgcmap_get\fP (\fBgcmap\fP *\fBgcmap\fP, char *key)"
+.br
+.RI "Get the value that a key refers to\&. "
+.ti -1c
+.RI "int \fBgcmap_put\fP (\fBgcmap\fP *\fBgcmap\fP, char *key, void *value)"
+.br
+.RI "Insert a key value pair into the map\&. "
+.ti -1c
+.RI "int \fBgcmap_remove\fP (\fBgcmap\fP *\fBgcmap\fP, char *key)"
+.br
+.RI "Remove a key value pair from the map\&. "
+.ti -1c
+.RI "\fBgcmap_node\fP * \fBnew_node\fP (char *key, void *value, \fBgcmap_node\fP *next)"
+.br
+.RI "Create a new node in the chaining map\&. "
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define MAX_KEY_LENGTH   128"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef struct \fBgcmap_t\fP \fBgcmap\fP"
+
+.SS "typedef struct \fBgcmap_node_t\fP \fBgcmap_node\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBgcmap\fP * gcmap_create (size_t max_size)"
+
+.PP
+Create the chaining map\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImax_size\fP maxsize of the map (refers to elements in array\&. Overflow is handled with chaining lists) 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the pointer to the map 
+.RE
+.PP
+
+.SS "void gcmap_free (\fBgcmap\fP * gcmap_p)"
+
+.PP
+Free the map\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgcmap_p\fP 
+.br
+ 
+.RE
+.PP
+
+.SS "void * gcmap_get (\fBgcmap\fP * gcmap_p, char * key)"
+
+.PP
+Get the value that a key refers to\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgcmap_p\fP pointer to the map 
+.br
+\fIkey\fP the key string 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+pointer to the value 
+.RE
+.PP
+
+.SS "int gcmap_hash (size_t maxsize, char * key)"
+
+.PP
+The hash function for the map\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fImaxsize\fP max size of the map 
+.br
+\fIkey\fP the key to hash 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the hash 
+.RE
+.PP
+
+.SS "int gcmap_put (\fBgcmap\fP * gcmap, char * key, void * value)"
+
+.PP
+Insert a key value pair into the map\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgcmap\fP the map 
+.br
+\fIkey\fP the key string 
+.br
+\fIvalue\fP pointer to the value 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if the insert was successful else 0 
+.RE
+.PP
+
+.SS "int gcmap_remove (\fBgcmap\fP * gcmap, char * key)"
+
+.PP
+Remove a key value pair from the map\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgcmap\fP 
+.br
+\fIkey\fP the key string 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+1 if the remove was successful else 0 
+.RE
+.PP
+
+.SS "\fBgcmap_node\fP * new_node (char * key, void * value, \fBgcmap_node\fP * next)"
+
+.PP
+Create a new node in the chaining map\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIkey\fP the key string 
+.br
+\fIvalue\fP the pointer to the value 
+.br
+\fInext\fP the pointer to the next node 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the pointer to the next node 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for GenCLib from the source code\&.

@@ -3,6 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * @brief The hash function for the map
+ * @param maxsize max size of the map
+ * @param key the key to hash
+ * @return the hash
+*/
 int gcmap_hash(size_t maxsize, char *key) {
     // Use a normal modulo hash function
 
@@ -19,6 +25,12 @@ int gcmap_hash(size_t maxsize, char *key) {
     return hash % maxsize;
 }
 
+/**
+ * @brief Get the value that a key refers to
+ * @param gcmap_p pointer to the map 
+ * @param key the key string 
+ * @return pointer to the value 
+ */
 void *gcmap_get(gcmap *gcmap_p, char *key) {
     int hash = gcmap_hash(gcmap_p->max_size, key);
     if (hash == -1) {
@@ -41,6 +53,13 @@ void *gcmap_get(gcmap *gcmap_p, char *key) {
     return NULL;
 }
 
+/**
+ * @brief Insert a key value pair into the map
+ * @param gcmap the map
+ * @param key the key string 
+ * @param value pointer to the value 
+ * @return 1 if the insert was successful else 0
+ */
 int gcmap_put(gcmap *gcmap, char *key, void *value) {
     int hash = gcmap_hash(gcmap->max_size, key);
     if (hash == -1) {
@@ -70,6 +89,11 @@ int gcmap_put(gcmap *gcmap, char *key, void *value) {
     return 1;
 }
 
+/// @brief Create a new node in the chaining map
+/// @param key the key string
+/// @param value the pointer to the value
+/// @param next the pointer to the next node
+/// @return the pointer to the next node
 gcmap_node* new_node(char *key, void *value, gcmap_node *next) {
     gcmap_node *node = malloc(sizeof(gcmap_node));
     node->key = key;
@@ -78,6 +102,9 @@ gcmap_node* new_node(char *key, void *value, gcmap_node *next) {
     return node;
 }
 
+/// @brief Create the chaining map
+/// @param max_size maxsize of the map (refers to elements in array. Overflow is handled with chaining lists)
+/// @return the pointer to the map
 gcmap *gcmap_create(size_t max_size) {
     gcmap *new_gcmap = malloc(sizeof(gcmap));
     new_gcmap->max_size = max_size;
@@ -86,11 +113,17 @@ gcmap *gcmap_create(size_t max_size) {
     return new_gcmap;
 }
 
+/// @brief Free the map
+/// @param gcmap_p 
 void gcmap_free(gcmap *gcmap_p) {
     free(gcmap_p->map);
     free(gcmap_p);
 }
 
+/// @brief Remove a key value pair from the map
+/// @param gcmap 
+/// @param key the key string
+/// @return 1 if the remove was successful else 0
 int gcmap_remove(gcmap *gcmap, char *key) {
     int hash = gcmap_hash(gcmap->max_size, key);
     if (hash == -1) {

@@ -20,7 +20,11 @@
     _a < _b ? _a : _b;       \
 })
 
-
+/// @brief Checks whether `prefix` is a prefix of `str` (none of the strings have to be null terminated)
+/// @param prefix the prefix to be checked
+/// @param prefix_len the length of the prefix
+/// @param str the string to be checked
+/// @return 1 if the prefix is a prefix -> else 0
 int is_prefix(char* prefix, size_t prefix_len, char* str) {
     for(size_t i = 0; i < prefix_len; i++) {
         if(prefix[i] != str[i]) {
@@ -30,6 +34,12 @@ int is_prefix(char* prefix, size_t prefix_len, char* str) {
     return 1;
 }
 
+/// @brief Checks whether `suffix` is a suffix of `str` (none of the strings have to be null terminated)
+/// @param suffix the suffix to be checked
+/// @param suffix_len the length of the suffix
+/// @param str the string to be checked
+/// @param str_len the length of the string to be checked
+/// @return 1 if the suffix is a suffix -> else 0
 int is_suffix(char* suffix, size_t suffix_len, char* str, size_t str_len) {
     for(int i = 0; i < suffix_len; i++) {
         if(suffix[i] != str[str_len - suffix_len + i]) {
@@ -39,6 +49,11 @@ int is_suffix(char* suffix, size_t suffix_len, char* str, size_t str_len) {
     return 1;
 }
 
+/// @brief Checks if a string contains a character
+/// @param arr the string to check
+/// @param len the length of the string
+/// @param key the character to look for
+/// @return 1 if the key is in the string else 0
 int contains(char* arr, size_t len, char key) {
     for(size_t i = 0; i < len; i++) {
         if(arr[i] == key) {
@@ -48,10 +63,14 @@ int contains(char* arr, size_t len, char key) {
     return 0;
 }
 
+/// @brief Remove the newline at the end of the string
+/// @param str 
 void remove_newline(char* str) {
     int len = strlen(str);
     str[len-1] = 0;
 }
+
+
 
 /// @brief Removes leading and trailing whitespaces
 /// @param str the input string
@@ -88,6 +107,12 @@ int remove_whitespaces(char* str, char* buf) {
     return 0;
 }
 
+/// @brief Split the string into 2 strings on the first occurence of a specific character
+/// @param str the original string
+/// @param str1 buffer for the first part of the string
+/// @param str2 buffer for the second part of the string
+/// @param c the character at which to split
+/// @return -1 if the character wasn't found. else 0
 int split_at_char(char* str, char* str1, char* str2, char c) {
     size_t i = 0;
     int splitindex = -1;
@@ -104,9 +129,9 @@ int split_at_char(char* str, char* str1, char* str2, char c) {
     }
     else {
         perror("Character was not found in array");
-        return -1;
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 
