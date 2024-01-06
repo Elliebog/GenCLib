@@ -85,13 +85,3 @@ char** argparse(char* str, int* argc) {
     *argc = argv_i+1;
     return argv;
 }
-
-//Testing
-int main(int argc, char* argv[]) {
-    int c = 0;
-    //free(argparse("argparse 123 456", NULL, &c));
-    char ** arrp = argparse("argparse   a \"1\" '2' a=2 -a", &c);
-    for(size_t i = 0; i < c; i++) {
-        printf("%d: %s\n", (int)i, arrp[i]);
-    }
-}

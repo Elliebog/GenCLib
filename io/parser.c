@@ -5,7 +5,7 @@
 #include <string.h>
 #include "parser.h"
 #include <stdbool.h>
-#include "../string/strlib.h"
+#include "strlib.h"
 
 #define LINE_LENGTH (MAX_KEY_LENGTH + MAX_VAL_LENGTH + 8) 
 #define INIT_LINES 512
@@ -82,4 +82,20 @@ conf_opt* read_conf(char* filepath, size_t* n) {
     optarr = reallocarray(optarr, i, sizeof(conf_opt));
     *n = i;
     return optarr;
+}
+
+gdhmap* read_conf_map(char* filepath) {
+    //To avoid constant resizing we execute read_conf one time and then just create a map with correct size
+    size_t n = 0;
+    conf_opt* optarr = read_conf(filepath, &n);
+
+    //create map
+    gdhmap* map = gdhmap_create(2*n);
+    //2*n = size to avoid long probing sequences
+    for(size_t i = 0; i < n; i++) {
+        gdhmap_put(map, optarr[i].key, optarr[i].val, MAX_VAL_LENGTH);
+    }
+
+    free(optarr);
+    return map;
 }
