@@ -1,0 +1,14 @@
+digraph "/home/ellie/Nextcloud/Coding/GenCLib/io"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  dir_bc161955dc3a3d2485839eba21420d01 [label="io", fillcolor="#edf2f7", color="grey25", style="filled,bold", URL="dir_bc161955dc3a3d2485839eba21420d01.html",tooltip=""];
+  dir_76cf5d2c64440c8b33b2b96569e4a2eb [label="string", fillcolor="#edf2f7", color="grey25", style="filled", URL="dir_76cf5d2c64440c8b33b2b96569e4a2eb.html",tooltip=""];
+  dir_ea42b4d93f9bdb625a057e7516a96ce1 [label="Collections", fillcolor="#edf2f7", color="red", style="filled", URL="dir_ea42b4d93f9bdb625a057e7516a96ce1.html",tooltip=""];
+  dir_bc161955dc3a3d2485839eba21420d01->dir_76cf5d2c64440c8b33b2b96569e4a2eb [headlabel="1", labeldistance=1.5 headhref="dir_000002_000006.html" href="dir_000002_000006.html" color="steelblue1" fontcolor="steelblue1"];
+  dir_bc161955dc3a3d2485839eba21420d01->dir_ea42b4d93f9bdb625a057e7516a96ce1 [headlabel="1", labeldistance=1.5 headhref="dir_000002_000000.html" href="dir_000002_000000.html" color="steelblue1" fontcolor="steelblue1"];
+}
